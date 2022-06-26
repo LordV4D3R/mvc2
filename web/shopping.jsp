@@ -4,6 +4,9 @@
     Author     : tranq
 --%>
 
+<%@page import="an.product.ProductDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="an.product.ProductDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,8 +16,13 @@
     </head>
     <body>
         <h1>Online Shopping</h1>
-        
-        
+
+        <%
+            ProductDAO dao = new ProductDAO();
+            dao.getItemList();
+            List<ProductDTO> list = (List<ProductDTO>) dao.getItem();
+            if (list != null) {
+        %>
         <table border="1">
             <thead>
                 <tr>
@@ -28,29 +36,48 @@
                         Price
                     </th>
                     <th>
-                        
+                        Description
+                    </th>
+                    <th>
+
                     </th>
                 </tr>
             </thead>
-            
+
             <tbody>
+                <%
+                    int count = 0;
+                    for (ProductDTO dto : list) {
+                %>
                 <tr>
                     <td>
-                        
+                        <%= ++count%>.
                     </td>
                     <td>
-                        
+                        <%= dto.getName()%>
                     </td>
                     <td>
-                        
+                        <%= (double) Math.round(dto.getPrice())%>$
                     </td>
                     <td>
-                        
+                        <%= dto.getDescription()%>
+                    </td>
+                    <td>
+                        <input type="submit" name="btAction" value="Add to cart"/>
                     </td>
                 </tr>
-            </tbody>
-        </table>
+                <%
+                    }
+                %>
 
-        
-    </body>
+
+        </table>
+        <%
+            }//end if list exist
+        %>
+    </tbody>
+    <a href="viewcart.jsp">
+        View your cart
+    </a>
+</body>
 </html>
