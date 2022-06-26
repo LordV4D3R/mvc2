@@ -40,9 +40,13 @@ public class ProductDAO {
             con = DBHelper.makeConnection();
 
             //2. create sql String
+            
             //3. create stament
+            
             //4. execute stament
+            
             //5. process result
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }catch(NamingException ex){
