@@ -6,6 +6,7 @@
 package an.controller;
 
 import an.registration.RegistrationDAO;
+import an.registration.RegistrationDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -58,9 +59,9 @@ public class ProcessRequestController extends HttpServlet {
 
                     //4. call DAO để check authentication
                     RegistrationDAO dao = new RegistrationDAO();
-                    boolean result = dao.checkLogin(username, password);
+                    RegistrationDTO result = dao.checkLogin(username, password);
                     
-                    if(result){
+                    if(result!= null){
                         url = SEARCH_PAGE;
                         break; //break For để ngưng
                     }//end authentication is successfully checked

@@ -63,7 +63,9 @@
                         <%= dto.getDescription()%>
                     </td>
                     <td>
+                        <form action="MainServlet">
                         <input type="submit" name="btAction" value="Add to cart"/>
+                        </form>
                     </td>
                 </tr>
                 <%

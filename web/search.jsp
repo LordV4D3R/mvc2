@@ -4,9 +4,12 @@
     Author     : tranq
 --%>
 
+<%--
 <%@page import="an.registration.RegistrationDTO"%>
 <%@page import="java.util.List"%>
+--%>
 <%@page contentType="text/html" pageEncoding="UTF-8" session="false" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +17,19 @@
         <title>Search</title>
     </head>
     <body>
-        <% 
+        <font color="red">
+        Welcome, ${sessionScope.USER.lastname}
+        </font>
+         <h1>Search Username</h1>
+        <form action="MainServlet">
+            Search Value <input type="text" name="txtSearchValue"
+                                value="${param.txtSearchValue}"/><br/>
+            <input type="submit" value="Search" name="btAction"/>
+        </form><br/>
+        
+        
+        
+        <%--        <% 
         Cookie[] cookies = request.getCookies();
         if (cookies != null){
             String username = "";
@@ -142,6 +157,6 @@
                 }
             }//end search Value has proceeded
 %>
-    
+  --%>  
     </body>
 </html>

@@ -15,9 +15,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import an.registration.RegistrationDAO;
+import an.registration.RegistrationDTO;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -51,17 +53,19 @@ public class LoginController extends HttpServlet {
 
             //1. call Model/DAO
             RegistrationDAO dao = new RegistrationDAO();
-            boolean result = dao.checkLogin(username, password);
+            RegistrationDTO result = dao.checkLogin(username, password);
             //- new DAO obj, then call method on DAO obj
-
+               
             //2. process result
-            if (result) {
+            if (result != null) {
                 url = SEARCH_PAGE;
+                HttpSession session = request.getSession();
+                session.setAttribute("USER", result);
                 //add cookie to client using reqObj
                 //tạo cookie
-                Cookie cookie = new Cookie(username, password);
-                cookie.setMaxAge(60 * 3);
-                response.addCookie(cookie);
+//                Cookie cookie = new Cookie(username, password);
+//                cookie.setMaxAge(60 * 3);
+//                response.addCookie(cookie);
             }
 
         } catch (NamingException ex) {
