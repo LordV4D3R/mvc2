@@ -9,6 +9,7 @@
 <%@page import="java.util.List"%>
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8" session="false" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -20,15 +21,62 @@
         <font color="red">
         Welcome, ${sessionScope.USER.lastname}
         </font>
-         <h1>Search Username</h1>
+        <h1>Search Username</h1>
         <form action="MainServlet">
             Search Value <input type="text" name="txtSearchValue"
                                 value="${param.txtSearchValue}"/><br/>
             <input type="submit" value="Search" name="btAction"/>
         </form><br/>
-        
-        
-        
+
+        <c:set var="searchValue" value="${param.txtSearchValue}"/>
+        <c:if test="${not empty searchValue}">
+            <c:set var="result" value="${requestScope.SEARCH_RESULT}"/>
+
+            <c:if test="${not empty result}">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Full name</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <c:forEach var="dto" items="${result}" varStatus="counter">
+                            <tr>
+                                <td>
+                                    ${counter.count}.
+                                </td>
+                                <td>
+                                    ${dto.username}
+                                </td>
+                                <td>
+                                    ${dto.password}
+                                </td>
+                                <td>
+                                    ${dto.lastname}
+                                </td>
+                                <td>
+                                    ${dto.role}
+                                </td>
+                            </tr>
+                        </c:forEach>                            
+                    </tbody>
+                </table>
+            </c:if>
+
+            <c:if test="${empty result}">
+                <h2>
+                    No matched record!!!
+                </h2>
+            </c:if>
+
+        </c:if>
+
+
         <%--        <% 
         Cookie[] cookies = request.getCookies();
         if (cookies != null){
@@ -157,6 +205,6 @@
                 }
             }//end search Value has proceeded
 %>
-  --%>  
+        --%>  
     </body>
 </html>
