@@ -19,7 +19,7 @@
     </head>
     <body>
         <font color="red">
-        Welcome, ${sessionScope.USER.lastname}
+        Welcome, ${sessionScope.username}
         </font>
         <h1>Search Username</h1>
         <form action="MainServlet">

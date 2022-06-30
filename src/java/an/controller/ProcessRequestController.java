@@ -18,6 +18,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -61,9 +62,13 @@ public class ProcessRequestController extends HttpServlet {
                     RegistrationDAO dao = new RegistrationDAO();
                     RegistrationDTO result = dao.checkLogin(username, password);
                     
-                    if(result!= null){
+                    if(result != null){
                         url = SEARCH_PAGE;
-                        break; //break For để ngưng
+                        String fullname = result.getLastname();
+                        HttpSession session = request.getSession();
+                        session.setAttribute("USERNAME", username);
+                        session.setAttribute("FULLNAME", fullname);
+                        
                     }//end authentication is successfully checked
                 }// end for traverse cookies 
             }//end cookies is existed
