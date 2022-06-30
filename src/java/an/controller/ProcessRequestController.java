@@ -68,9 +68,15 @@ public class ProcessRequestController extends HttpServlet {
                 }// end for traverse cookies 
             }//end cookies is existed
         } catch (NamingException ex) {
-            ex.printStackTrace();
+            log(ex.getMessage());
+            request.setAttribute("Error", ex.getMessage());
+            RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+            rd.forward(request, response);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log(ex.getMessage());
+            request.setAttribute("Error", ex.getMessage());
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         } finally {
             response.sendRedirect(url);
         }

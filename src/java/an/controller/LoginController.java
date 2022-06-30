@@ -69,10 +69,15 @@ public class LoginController extends HttpServlet {
             }
 
         } catch (NamingException ex) {
-            ex.printStackTrace();
+            log(ex.getMessage());
+            request.setAttribute("Error", ex.getMessage());
+            RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+            rd.forward(request, response);
         } catch (SQLException ex) {
-            ex.printStackTrace();
-
+            log(ex.getMessage());
+            request.setAttribute("Error", ex.getMessage());
+            RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+            rd.forward(request, response);
         } finally {
 //            response.sendRedirect(url); dòng này sẽ làm hiển thị đường truyền
 //sendRedirect là đưa thành phần vào trong resobj, resobj mới render dữ liệu

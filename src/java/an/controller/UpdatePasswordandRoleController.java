@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -58,9 +59,15 @@ public class UpdatePasswordandRoleController extends HttpServlet {
                         + "&txtSearchValue=" + searchValue;
             }//end if            
         }catch(NamingException ex){
-            ex.printStackTrace();
+            log(ex.getMessage());
+            request.setAttribute("ERROR", ex.getMessage());
+            RequestDispatcher rd = request.getRequestDispatcher("error.html");
+            rd.forward(request, response);
         }catch(SQLException ex){
-            ex.printStackTrace();
+            log(ex.getMessage());
+            request.setAttribute("ERROR", ex.getMessage());
+            RequestDispatcher rd = request.getRequestDispatcher("error.html");
+            rd.forward(request, response);
         }finally {
             response.sendRedirect(url);
         }

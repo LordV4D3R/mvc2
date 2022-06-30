@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,9 +53,15 @@ public class DeleteAccountController extends HttpServlet {
                         + "&txtSearchValue=" + searchValue;
             }//end if delete 
         }catch(NamingException ex){
-            ex.printStackTrace();
+            log(ex.getMessage());
+            request.setAttribute("Error", ex.getMessage());
+            RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+            rd.forward(request, response);
         }catch(SQLException ex){
-            ex.printStackTrace();
+            log(ex.getMessage());
+            request.setAttribute("Error", ex.getMessage());
+            RequestDispatcher rd = request.getRequestDispatcher("error.jsp");            
+            rd.forward(request, response);
         }finally{
             //xài reqdis thì sẽ bị dư paramater (vì reqdis khi forward sẽ duy trì
             //obj nên parameter sẽ bị trùng (tạo thành mảng ko có thứ tự)-> nó 
