@@ -7,7 +7,9 @@ package an.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Properties;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -58,8 +60,11 @@ public class MainServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        //cái này để chuyển qua cho sitemaps để che đường dẫn
+        ServletContext context = this.getServletContext();
+        Properties siteMaps = (Properties)context.getAttribute("SITEMAPS");
+        String url = siteMaps.getProperty(LOGIN_PAGE);
         
-        String url = LOGIN_PAGE;
         
         //which button did user click?
         String action = request.getParameter("btAction");// thực chất là đặt cái
@@ -87,7 +92,6 @@ public class MainServlet extends HttpServlet {
             }else if(action.equals("Check Out")){
                 url = CHECKOUT_CART;
             }
-            
             
         } finally{
             RequestDispatcher rd = request.getRequestDispatcher(url);
