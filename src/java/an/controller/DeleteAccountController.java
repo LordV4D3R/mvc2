@@ -53,15 +53,9 @@ public class DeleteAccountController extends HttpServlet {
                         + "&txtSearchValue=" + searchValue;
             }//end if delete 
         }catch(NamingException ex){
-            log(ex.getMessage());
-            request.setAttribute("Error", ex.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-            rd.forward(request, response);
+            log("ProcessRequestController _ Naming _ " + ex.getMessage());
         }catch(SQLException ex){
-            log(ex.getMessage());
-            request.setAttribute("Error", ex.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("error.jsp");            
-            rd.forward(request, response);
+            log("ProcessRequestController _ SQL _ " + ex.getMessage());
         }finally{
             //xài reqdis thì sẽ bị dư paramater (vì reqdis khi forward sẽ duy trì
             //obj nên parameter sẽ bị trùng (tạo thành mảng ko có thứ tự)-> nó 

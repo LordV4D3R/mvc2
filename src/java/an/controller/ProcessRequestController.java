@@ -64,10 +64,11 @@ public class ProcessRequestController extends HttpServlet {
                     
                     if(result != null){
                         url = SEARCH_PAGE;
-                        String fullname = result.getLastname();
+//                        String fullname = result.getLastname();
                         HttpSession session = request.getSession(true);
-                        session.setAttribute("USERNAME", username);
-                        session.setAttribute("FULLNAME", fullname);
+                        session.setAttribute("USER", result);
+//                        session.setAttribute("USERNAME", username);
+//                        session.setAttribute("FULLNAME", fullname);
                         break;
                     }//end authentication is successfully checked
                 }// end for traverse cookies 

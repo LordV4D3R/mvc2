@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/An/PRJ/prjktk/src/java/an/product/ProductDAO.java</file>
-            <file>file:/C:/An/PRJ/prjktk/web/WEB-INF/siteMaps.properties</file>
-            <file>file:/C:/An/PRJ/prjktk/src/java/an/controller/CheckOutController.java</file>
-            <file>file:/C:/An/PRJ/prjktk/web/search.jsp</file>
-            <file>file:/C:/An/PRJ/prjktk/src/java/an/controller/ProcessRequestController.java</file>
-            <file>file:/C:/An/PRJ/prjktk/src/java/an/registration/RegistrationDTO.java</file>
-            <file>file:/C:/An/PRJ/prjktk/src/java/an/registration/RegistrationDAO.java</file>
+            <file>file:/C:/Users/AN/Desktop/lap/mvc2/web/search.jsp</file>
+            <file>file:/C:/Users/AN/Desktop/lap/mvc2/src/java/an/registration/RegistrationDTO.java</file>
+            <file>file:/C:/Users/AN/Desktop/lap/mvc2/src/java/an/controller/LoginController.java</file>
+            <file>file:/C:/Users/AN/Desktop/lap/mvc2/src/java/an/controller/ProcessRequestController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -59,15 +59,9 @@ public class UpdatePasswordandRoleController extends HttpServlet {
                         + "&txtSearchValue=" + searchValue;
             }//end if            
         }catch(NamingException ex){
-            log(ex.getMessage());
-            request.setAttribute("ERROR", ex.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("error.html");
-            rd.forward(request, response);
+            log("ProcessRequestController _ Naming _ " + ex.getMessage());
         }catch(SQLException ex){
-            log(ex.getMessage());
-            request.setAttribute("ERROR", ex.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("error.html");
-            rd.forward(request, response);
+            log("ProcessRequestController _ SQL _ " + ex.getMessage());
         }finally {
             response.sendRedirect(url);
         }

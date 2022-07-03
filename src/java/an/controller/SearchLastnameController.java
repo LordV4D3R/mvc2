@@ -59,15 +59,9 @@ public class SearchLastnameController extends HttpServlet {
             //ko làm gì cả ra trang trắng (vì đang đứng ở phía server)
             //cho nó về lại trang search
         } catch (NamingException ex) {
-            log(ex.getMessage());
-            request.setAttribute("Error", ex.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-            rd.forward(request, response);
+            log("ProcessRequestController _ Naming _ " + ex.getMessage());
         } catch (SQLException ex) {
-            log(ex.getMessage());
-            request.setAttribute("Error", ex.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-            rd.forward(request, response);
+            log("ProcessRequestController _ SQL _ " + ex.getMessage());
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
