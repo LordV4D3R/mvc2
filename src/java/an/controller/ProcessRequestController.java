@@ -65,23 +65,17 @@ public class ProcessRequestController extends HttpServlet {
                     if(result != null){
                         url = SEARCH_PAGE;
                         String fullname = result.getLastname();
-                        HttpSession session = request.getSession();
+                        HttpSession session = request.getSession(true);
                         session.setAttribute("USERNAME", username);
                         session.setAttribute("FULLNAME", fullname);
-                        
+                        break;
                     }//end authentication is successfully checked
                 }// end for traverse cookies 
             }//end cookies is existed
         } catch (NamingException ex) {
-            log(ex.getMessage());
-            request.setAttribute("Error", ex.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
-            rd.forward(request, response);
+            log("ProcessRequestController _ Naming _ " + ex.getMessage());
         } catch (SQLException ex) {
-            log(ex.getMessage());
-            request.setAttribute("Error", ex.getMessage());
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
+            log("ProcessRequestController _ SQL _ " + ex.getMessage());
         } finally {
             response.sendRedirect(url);
         }

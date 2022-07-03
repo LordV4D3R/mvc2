@@ -56,7 +56,7 @@ public class RegistrationDAO implements Serializable {
                 if (rs.next()) {
                     String fullname = rs.getString("lastname");
                     boolean role = rs.getBoolean("isAdmin");
-                    result = new RegistrationDTO(username, null, fullname, role) ;
+                    result = new RegistrationDTO(username, password, fullname, role) ;
                 }
             }//end if connection is existed
         } finally {
