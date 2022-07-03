@@ -19,7 +19,7 @@
     </head>
     <body>
         <font color="red">
-        Welcome, ${sessionScope.username}
+        Welcome, ${sessionScope.FULLNAME}
         </font>
         <h1>Search Username</h1>
         <form action="MainServlet">
@@ -41,97 +41,121 @@
                             <th>Password</th>
                             <th>Full name</th>
                             <th>Role</th>
+                            <th>Delete</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
 
                     <tbody>
+
+
                         <c:forEach var="dto" items="${result}" varStatus="counter">
+                        <form action="MainServlet">
+
                             <tr>
                                 <td>
                                     ${counter.count}.
                                 </td>
                                 <td>
                                     ${dto.username}
+                                    <input type="hidden" name="txtUsername" value="" />
                                 </td>
                                 <td>
                                     ${dto.password}
+                                    <input type="hidden" name="txtPassword" value="" />
                                 </td>
                                 <td>
                                     ${dto.lastname}
                                 </td>
                                 <td>
-                                    ${dto.role}
+                                    <input type="checkbox" name="chkAdmin" value="ON"
+                                           <c:if test="${dto.role}">
+                                               checked="checked"
+                                           </c:if>
+                                           />
+                                </td>
+                                <td>
+                                    <c:url var="deleteLink" value="MainServlet">
+                                        <c:param name="btAction" value="Delete"/>
+                                        <c:param name="username" value="${dto.username}"/>
+                                        <c:param name="lastSearchValue" value="${searchValue}"/>                                        
+                                    </c:url>
+                                    <a href="${deleteLink}">Delete</a>
+                                </td>
+                                <td>
+
                                 </td>
                             </tr>
-                        </c:forEach>                            
-                    </tbody>
-                </table>
-            </c:if>
-
-            <c:if test="${empty result}">
-                <h2>
-                    No matched record!!!
-                </h2>
-            </c:if>
-
+                        </form>
+                    </c:forEach>       
+                </tbody>
+            </table>
         </c:if>
 
+        <c:if test="${empty result}">
+            <h2>
+                No matched record!!!
+            </h2>
+        </c:if>
 
-        <%--        <% 
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null){
-            String username = "";
-            for(Cookie cookie : cookies){
-                String temp = cookie.getName();
-                if(!temp.equals("JSESSIONID")){
-                    username = temp;
-                }
+    </c:if>
+
+
+    <%--        <% 
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null){
+        String username = "";
+        for(Cookie cookie : cookies){
+            String temp = cookie.getName();
+            if(!temp.equals("JSESSIONID")){
+                username = temp;
             }
-            %>
-        <font color="red">
-        Welcome, <%= username %>
-        
-        
-        </font>
-        
-        <br/>
-        <form action="MainServlet">
-        <input type="submit" value="Logout" name="btAction"/>
-        <input type="hidden" name="txtusername" value="<%= username %>" />
-        </form>
-        
-                <%
-            }//end if
-            %>
-            
-        <h1>Search Username</h1>
-        <form action="MainServlet">
-            Search Value <input type="text" name="txtSearchValue"
-                                value="<%= request.getParameter("txtSearchValue") %>"/><br/>
-            <input type="submit" value="Search" name="btAction"/>
-        </form><br/>
-        <%
-            String searchValue = request.getParameter("txtSearchValue");
-            if (searchValue != null) {
-                List<RegistrationDTO> result = (List<RegistrationDTO>) request.getAttribute("SEARCH_RESULT");
-                if (result != null) {
+        }
+        %>
+    <font color="red">
+    Welcome, <%= username %>
+    
+    
+    </font>
+    
+    <br/>
+    <form action="MainServlet">
+    <input type="submit" value="Logout" name="btAction"/>
+    <input type="hidden" name="txtusername" value="<%= username %>" />
+    </form>
+    
+            <%
+        }//end if
         %>
         
-        
-        
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>Full Name</th>
-                    <th>Role</th>
-                    <th>Delete</th>
-                    <th>Update</th>
-                </tr>
-            </thead>
-            <tbody>
+    <h1>Search Username</h1>
+    <form action="MainServlet">
+        Search Value <input type="text" name="txtSearchValue"
+                            value="<%= request.getParameter("txtSearchValue") %>"/><br/>
+        <input type="submit" value="Search" name="btAction"/>
+    </form><br/>
+    <%
+        String searchValue = request.getParameter("txtSearchValue");
+        if (searchValue != null) {
+            List<RegistrationDTO> result = (List<RegistrationDTO>) request.getAttribute("SEARCH_RESULT");
+            if (result != null) {
+    %>
+    
+    
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Full Name</th>
+                <th>Role</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
 
                 <tr>
                     <%
@@ -205,6 +229,6 @@
                 }
             }//end search Value has proceeded
 %>
-        --%>  
-    </body>
+    --%>  
+</body>
 </html>
