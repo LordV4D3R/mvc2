@@ -30,7 +30,7 @@ public class LoginController extends HttpServlet {
     private final String INVALID_PAGE = "invalid.html";//nhung thanh phan lien
     //quan toi chuyen URL tuyet doi ko dc viet trong code ma phai khai bang bien
     //hang. Ten bien hang bat buoc phai dung chu in het 
-    private final String SEARCH_PAGE = "searchpage.html";
+    private final String SEARCH_PAGE = "search.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

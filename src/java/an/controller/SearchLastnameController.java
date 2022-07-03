@@ -42,7 +42,7 @@ public class SearchLastnameController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String searchValue = request.getParameter("txtSearchValue");
-        String url = SEARCH_PAGE;
+        String url = SEARCH_RESULT_PAGE;
         
 
         try {
