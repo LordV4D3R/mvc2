@@ -56,7 +56,7 @@ public class RegistrationDAO implements Serializable {
                 if (rs.next()) {
                     String fullname = rs.getString("lastname");
                     boolean role = rs.getBoolean("isAdmin");
-                    result = new RegistrationDTO(username, password, fullname, role) ;
+                    result = new RegistrationDTO(username, password, fullname, role);
                 }
             }//end if connection is existed
         } finally {
@@ -206,21 +206,21 @@ public class RegistrationDAO implements Serializable {
             //1.make connection
             connection = DBHelper.makeConnection();
             if (connection != null) {
-                
+
                 //2.create sql string
                 String sql = "Update Registration "
                         + "Set password = ?, isAdmin = ? "
                         + "Where username = ?";
-                
+
                 //3.create stament to sql
                 stm = connection.prepareStatement(sql);
                 stm.setString(1, password);
                 stm.setBoolean(2, isAdmin);
                 stm.setString(3, username);
-                
+
                 //4.execute statement
                 int row = stm.executeUpdate();
-                
+
                 //5.process result
                 if (row > 0) {
                     result = true;
@@ -237,5 +237,48 @@ public class RegistrationDAO implements Serializable {
         }
         return result;
     }
-    
+
+    public boolean createAccount(RegistrationDTO dto)
+            throws NamingException, SQLException {
+        //đối vs trạng thái truyền obj thì phải kiểm tra xem obj có bằng null
+        //hay ko, nếu bằng null thì ko làm j cả
+        if (dto == null) {
+            return false;
+        }
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean result = false;
+
+
+        try {
+            //1. make connection
+            con = DBHelper.makeConnection();
+
+            //2. create sql string
+            String sql = "Insert Into Registration(username, password, lastname, isAdmin) "
+                    + "Values(?, ?, ?, ?)";
+            //3. create stament
+            stm = con.prepareStatement(sql);
+            stm.setString(1, dto.getUsername());
+            stm.setString(2, dto.getPassword());
+            stm.setString(3, dto.getLastname());
+            stm.setBoolean(4, dto.isRole());
+            //4. execute stament
+            int row = stm.executeUpdate();
+            //5. proccess result
+            if (row > 0) {
+                result = true;
+            }
+        } finally {
+
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+
+        }
+        return result;
+    }
 }
