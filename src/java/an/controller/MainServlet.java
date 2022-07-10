@@ -42,11 +42,12 @@ public class MainServlet extends HttpServlet {
     private final String DELETE_ACCOUNT_CONTROLLER = "DeleteAccountController";
     private final String UPDATE_PASSWORD_AND_ROLE = "UpdatePasswordandRoleController";
     private final String PROCESS_REQUEST_CONTROLLER ="ProcessRequestController";
-    private final String ADD_TO_CART = "AddToCartController";
+    private final String ADD_TO_CART_CONTROLLER = "AddToCartController";
     private final String LOGOUT_CONTROLLER = "LogoutController";
     private final String VIEW_CART = "viewcart.jsp";
-    private final String REMOVE_ITEMS = "RemoveItemsController";
-    private final String CHECKOUT_CART = "CheckOutController";
+    private final String REMOVE_ITEMS_CONTROLLER = "RemoveItemsController";
+    private final String CHECKOUT_CART_CONTROLLER = "CheckOutController";
+    private final String CREATE_NEW_ACCOUNT_CONTROLLER = "CreateNewAccountController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -82,17 +83,19 @@ public class MainServlet extends HttpServlet {
             }else if(action.equals("Update")){
                 url = UPDATE_PASSWORD_AND_ROLE;
             } else if (action.equals("Add to cart")){
-                url = ADD_TO_CART;
+                url = ADD_TO_CART_CONTROLLER;
             }else if(action.equals("Logout")){
                 url = LOGOUT_CONTROLLER;
             } else if(action.equals("View your cart")){
                 url = VIEW_CART;
             }else if(action.equals("Remove Selectd Items")){
-                url = REMOVE_ITEMS;
+                url = REMOVE_ITEMS_CONTROLLER;
             }else if(action.equals("Check Out")){
-                url = CHECKOUT_CART;
+                url = CHECKOUT_CART_CONTROLLER;
+            }else if(action.equals("Create New Account")){
+                url = CREATE_NEW_ACCOUNT_CONTROLLER;
             }
-            
+                        
         } finally{
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request,response);
