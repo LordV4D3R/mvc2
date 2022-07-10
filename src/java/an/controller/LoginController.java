@@ -69,9 +69,9 @@ public class LoginController extends HttpServlet {
             }
 
         } catch (NamingException ex) {
-            log("ProcessRequestController _ Naming _ " + ex.getMessage());
+            log("LoginController _ Naming _ " + ex.getMessage());
         } catch (SQLException ex) {
-            log("ProcessRequestController _ SQL _ " + ex.getMessage());
+            log("LoginController _ SQL _ " + ex.getMessage());
         } finally {
 //            response.sendRedirect(url); dòng này sẽ làm hiển thị đường truyền
 //sendRedirect là đưa thành phần vào trong resobj, resobj mới render dữ liệu

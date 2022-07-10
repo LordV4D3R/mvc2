@@ -53,9 +53,9 @@ public class DeleteAccountController extends HttpServlet {
                         + "&txtSearchValue=" + searchValue;
             }//end if delete 
         }catch(NamingException ex){
-            log("ProcessRequestController _ Naming _ " + ex.getMessage());
+            log("DeleteAccountController _ Naming _ " + ex.getMessage());
         }catch(SQLException ex){
-            log("ProcessRequestController _ SQL _ " + ex.getMessage());
+            log("DeleteAccountController _ SQL _ " + ex.getMessage());
         }finally{
             //xài reqdis thì sẽ bị dư paramater (vì reqdis khi forward sẽ duy trì
             //obj nên parameter sẽ bị trùng (tạo thành mảng ko có thứ tự)-> nó 
