@@ -65,7 +65,7 @@ public class MainServlet extends HttpServlet {
         ServletContext context = this.getServletContext();
         Properties siteMaps = (Properties)context.getAttribute("SITEMAPS");
         String url = siteMaps.getProperty(LOGIN_PAGE);
-        
+        //String url = siteMaps.getProperty(MyApplicationConstants.DispatchFeatures.LOGIN_PAGE);
         
         //which button did user click?
         String action = request.getParameter("btAction");// thực chất là đặt cái
